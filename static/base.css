@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
+
+html{
+    background-color: #f5f5f5;
+}
+#main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: sticky;
+    top: 0; /* Ensures it stays at the top of the viewport */
+    height: 60px; /* Adjust height to fit your design */
+    z-index: 1000; /* Keeps it above other content if overlapping occurs */
+    gap: 5px;
+    background-color: white;
+    box-shadow: 1px 0px 3px 1px gray;
+    border-radius: 15px;
+    margin: 18px;
+}
+
+
+.child {
+    font-family: "Geist", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-weight: 600;
+    margin: 0 5px; /* Adds space between letters */
+}
+
+.cart-icon {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .icon{
+    color: black;
+
+  }
+  .badge {
+    position: absolute;
+    top: 0;
+    right: -5px;
+    background-color: red;
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 50%;
+    border: 2px solid white; /* Optional for a cleaner look */
+  }
+  
+
+.feather-shopping-cart {
+    margin-left: auto; /* Pushes the SVG to the right */
+    cursor: pointer; /* Optional: adds a pointer cursor */
+}
+.cart-icon {
+    cursor: pointer;
+    position: fixed;
+    top: 32px;
+    right: 40px;
+    z-index: 1000;
+}
+/* Overlay to dim the background */
+#cart-overlay {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    z-index: 100000; /* Above other elements */
+    overflow: hidden; /* Prevent scrolling */
+  }
+  
+  /* Centered cart card */
+  #cart-panel {
+    position: absolute;
+    top: 50%;
+    left: 84%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+    text-align: center;
+  }
+  
+/* Cart Panel (Slide-in) */
+.cart-panel {
+    width: 470px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    top: 0;
+    right: 50%;
+    z-index: 100;
+}
+
+/* Show Cart Panel */
+.cart-panel.open {
+    right: 0;
+}
+
+/* Close Button Styling */
+.close-cart {
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    color: #333;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+/* Product List Container */
+.cart-items {
+    margin-top: 20px;
+    overflow-y: auto; /* Enable scrolling if content overflows */
+    padding: 10px;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    flex-grow: 1;  
+}
+
+/* Individual Cart Item */
+.cart-items .cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.cart-items .cart-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 5px; /* Optional for rounded corners */
+}
+
+.cart-items .cart-item-info {
+    flex: 1;
+    padding-left: 10px;
+}
+
+.cart-items .cart-item-info h4 {
+    margin: 0;
+    font-size: 1em;
+    color: #333;
+}
+
+.cart-items .cart-item-info p {
+    margin: 5px 0 0;
+    font-size: 0.9em;
+    color: #666;
+}
+
+/* Cart Footer */
+.cart-footer {
+    margin-top: 20px;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+    text-align: center;
+}
+
+.cart-footer .total-price {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.cart-footer .checkout-btn {
+    border: 2px solid black;
+    border-radius: 15px;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.4s ease-in-out;
+}
+
+.cart-footer .checkout-btn:hover {
+    background-color: black;
+    color: white;
+}
+/* Adjust Scrollbar for a cleaner look */
+.cart-items::-webkit-scrollbar {
+    width: 8px;
+}
+
+.cart-items::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
+}
+
+.cart-items::-webkit-scrollbar-thumb:hover {
+    background-color: #aaa;
+}
+ 
+
+/* Footer styling */
+.footer {
+    text-align: center;
+    padding-top: 20px;
+    font-size: 0.9em;
+}
+
+/* Link styling */
+.footer a {
+    color: black;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}

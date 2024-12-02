@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> LUGA - AI pick</title>
+    <link rel="stylesheet" href= {% static "styles.css" %} >
+    <link rel="stylesheet" href= {% static "frabic_styles.css" %} >
+</head>
+<body>
+    <div class="back-button">
+        <button onclick="goBack()">&#8592; Back</button>
+    </div>
+
+    <div class="search-section">
+        <h2 class="search-title">Find Your Perfect Outfit</h2>
+        <form class="outfit-search-form">
+            <div class="form-group">
+                <label for="event">Event Type</label>
+                <select id="event" name="event" class="form-control">
+                    <option value="formal">Formal</option>
+                    <option valuual">Casual</option>
+                    <option value="wede="casding">Wedding</option>
+                    <option value="party">Party</option>
+                    <option value="sports">Sports</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="body-type">Body Type</label>
+                <select id="body-type" name="body-type" class="form-control">
+                    <option value="slim">Slim</option>
+                    <option value="muscular">Muscular</option>
+                    <option value="fat">Fat</option>
+                    <option value="athletic">Athletic</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="gender">For Whom</label>
+                <select id="gender" name="gender" class="form-control">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="unisex">Unisex</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="season">Season</label>
+                <select id="season" name="season" class="form-control">
+                    <option value="summer">Summer</option>
+                    <option value="winter">Winter</option>
+                    <option value="spring">Spring</option>
+                    <option value="fall">Fall</option>
+                </select>
+            </div>
+
+            <button type="submit" class="search-button">Get Recommendations</button>
+        </form>
+        
+    <section class="image-gallery">
+        <div class="image-row">
+        {% for product in products %}
+        
+            <div class="image-column">
+                <a href={% url "product" product.slug %}>
+                <div class="image-container-collection">
+                    <img src={{ product.img.url}}
+                        alt={{ product.slug }}>
+                </div>
+                <p class="image-label"> {{ product.name}}</p>
+            </a>
+            </div>
+        {% endfor %}
+        </div>
+    </section>
+
+ 
+    </div>
+<script>
+// Function to navigate to the previous page
+function goBack() {
+    window.history.back();
+}
+</script>
+</body>
+</html>

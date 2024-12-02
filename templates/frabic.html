@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+    {% block content %}
+    <div class="container"><!-- Back Button -->
+        <div class="back-button">
+            <button onclick="goBack()">&#8592; Back</button>
+        </div>
+    
+        <div class="product-image">
+            <img src= {{ product.img.url}} alt={{ product.slug }}>
+        </div>
+        <div class="product-details">
+            <h1> {{ product.name }}</h1>
+            <p> {{ product.dis}} </p>
+            <p class="price">${{ product.price }}</p>
+            <div class="color-options">
+                <span>Color:</span>
+                <button class="color white"></button>
+                <button class="color black"></button>
+            </div>
+            <div class="size-options">
+                <span>Size:</span>
+                <button class="size">S</button>
+                <button class="size">M</button>
+                <button class="size">L</button>
+                <button class="size">XL</button>
+                <button class="size">2XL</button>
+                <button class="size">3XL</button>
+            </div>
+            <button class="add-to-cart" onclick=" location.href='{% url 'add_to_cart' product.slug %}' ">Add to Cart</button>
+            <button class="shop-pay" onclick=" location.href='{% url 'checkout/product' product.slug %}' " >Buy with Shop Pay</button>
+        </div> 
+    </div>
+<script> 
+    // Function to navigate to the previous page
+function goBack() {
+    window.history.back();
+}
+</script>
+{% endblock content %}
+{% block styles %}
+{% load static %}
+<link rel="stylesheet" href={% static "frabic_styles.css" %}>
+{% endblock styles %}

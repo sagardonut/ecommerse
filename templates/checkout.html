@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Buy cool new product</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <section>
+      <div class="product">
+        <img src={{product.img.url}} alt= {{product.slug}} />
+        <div class="description">
+          <h3>{{product.name}}</h3>
+          <h5>{{product.price}}</h5>
+        </div>
+      </div>
+      <form action="location.href='{% url 'create-checkout-session' product.slug %}' " method="POST">
+        {% csrf_token %}
+        <button type="submit" id="checkout-button">Checkout</button>
+      </form>
+    </section>
+  </body>
+</html>

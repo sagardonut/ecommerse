@@ -1,0 +1,71 @@
+
+    {% extends "base.html" %}
+    {% block content %}
+
+    {% if messages %}
+        {% for message in messages %}
+            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    
+    <!-- Full-Width New Arrivals Section -->
+    <div class="new-arrivals full-width-section">
+        <div class="section-content">
+            <h1 class="main-title">Discover Our New Arrivals</h1>
+            <p class="subtext">Explore the latest styles and must-have trends of the season.</p>
+            <a href="#" class="cta-button">Shop New Arrivals</a>
+        </div>
+
+        <div class="new-arrivals-grid">
+            {% for product in products %}
+            {% if product.catagory == "new arival" %}
+            <div class="arrival-item">
+                <div class="label">{{ product.name }}</div>
+                <a href="{% url 'product' product.slug %}">
+                    <img src="{{ product.img.url}}" alt="{{ product.name }}" class="image">
+                </a>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    <!-- Most sold image container section -->
+    <div class=" section most-sold-section">
+        <h2 class="section-title">Most Sold This Year</h2>
+        <div class="image-grid">
+            {% for product in products %}
+            {% if product.catagory == "best seller" %}
+            <div class="image-container">
+                <a href={% url "product" product.slug %}>
+                    <img src={{ product.img.url}} alt={{ product.slug}} class="image">
+                    <div class="label"> {{ product.name }}</div>
+                </a>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    <div class="content-section">
+        <!-- Weather-based Clothing Recommendations -->
+        <div class="weather-recommendation">
+            <h2 class="section-title">Today's Clothing Recommendations</h2>
+            <div class="recommendation-grid">
+                {% for product in products %}
+                {% if product.catagory == "season collection" %}
+                <div class="recommendation-item">
+                    <a href="{% url 'product' product.slug %}">
+                        <img src="{{ product.img.url }}" alt="product.name }}" class="image">
+                        <div class="label">{{ product.name }}</div>
+                    </a>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    {% endblock content %}
+    {% block styles %}
+    {% load static %}
+    <link rel="stylesheet" href={% static "demstyles.css" %}>
+    {% endblock styles %}
+

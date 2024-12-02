@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> LUGA-wear for comfort</title>
+    <link rel="stylesheet" href= {% static "base.css" %} > 
+    {% block styles %}{% endblock styles %}
+</head>
+
+<body>
+    <div id="main">
+        <div id="child1" class="child">L</div>
+        <div id="child2" class="child">U</div>
+        <div id="child3" class="child">G</div>
+        <div id="child4" class="child">A</div>
+
+        <div id="cartsvg" class="cart-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+            <span class="badge"> 
+              {% if request.session.cart|length|default:0 > 0  %}
+               {{ request.session.cart|length|default:0 }}
+              {% endif %}
+              </span>
+        </div>
+        
+    </div> 
+
+    <div id="cart-overlay">
+        <!-- Cart Panel-->
+        <div id="cart-panel" class="cart-panel">
+            <button class="close-cart" onclick="closeCart()">&#10005;</button>
+            <h2>Cart</h2>
+            <div class="cart-items">
+                <!-- Cart items injected here dynamically -->
+                {% if cart %}
+                <div class="cart-list">
+                  {% for item in cart.values %}
+                      <div class="cart-item">
+                        <img class="cart_img" src="{{ item.img_url }}" alt="{{ item.item }}">
+                        <div class="cart-item-info">
+                            <h4>{{ item.item }}</h4>
+                            <p>${{ item.bill_amt }} x {{ item.quantity }}</p>
+                        </div>
+                      </div>
+                  {% endfor %}
+                </div>
+              <div class="cart-footer">
+                  <p class="total-price">Total Price: ${{ bill_amt }}</p>
+                  <button class="checkout-btn">Checkout</button>
+            </div>
+      {% else %}
+        <p>Your cart is empty.</p>
+      {% endif %}
+            </div>
+        </div>
+    </div>
+
+    {% block content %}{% endblock content %}
+        <!-- Footer -->
+        <div class="footer">
+            <p>&copy; {{ current_year }} L U G A . All rights reserved.</p>
+            <p>Contact us: <a href="mailto:support@LUGA.com">support@yourstore.com</a></p>
+        </div>
+    </div>
+
+    <script>
+       document.getElementById('cartsvg').addEventListener('click', function() {
+        console.log("Cart opened!");
+        cart=document.getElementById("cart-overlay");
+        cart.styl = "be.displaylock";
+        cart.style.display = "block"
+        document.body.style.overflow = "hidden"; 
+});
+ 
+function closeCart() {
+  cart= document.getElementById("cart-overlay").style.display = "none";
+  document.body.style.overflow = "auto"; /* Re-enable scrolling */
+  cart.style.display = "none"
+}
+
+
+    </script>
+</body>
+
+</html>
