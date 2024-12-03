@@ -2,20 +2,33 @@
 <html>
   <head>
     <title>Buy cool new product</title>
-    <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <section>
-      <div class="product">
-        <img src={{product.img.url}} alt= {{product.slug}} />
-        <div class="description">
-          <h3>{{product.name}}</h3>
-          <h5>{{product.price}}</h5>
+    <section style="display: flex; flex-direction: column; align-items: center; padding: 20px; font-family: Arial, sans-serif;">
+      <div class="product" style="border: 1px solid #ddd; border-radius: 8px; padding: 16px; max-width: 300px; text-align: center; margin-bottom: 20px;">
+        <img 
+          src="{{product.img.url}}" 
+          alt="{{product.slug}}" 
+          style="max-width: 100%; border-radius: 8px; margin-bottom: 12px;"
+        />
+        <div class="description" style="line-height: 1.5;">
+          <h3 style="font-size: 1.5em; margin: 0;">{{product.name}}</h3>
+          <h5 style="color: #555; margin: 8px 0 0;">USD$ {{product.price}}</h5>
         </div>
       </div>
-      <form action="location.href='{% url 'create-checkout-session' product.slug %}' " method="POST">
+      <form 
+        action= "{% url 'create-checkout-session' product.slug %}" 
+        method="POST" 
+        style="text-align: center;"
+      >
         {% csrf_token %}
-        <button type="submit" id="checkout-button">Checkout</button>
+        <button 
+          type="submit" 
+          id="checkout-button" 
+          style="background-color: #007bff; color: white; border: none; border-radius: 8px; padding: 10px 20px; font-size: 1em; cursor: pointer;"
+        >
+          Checkout
+        </button>
       </form>
     </section>
   </body>

@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
     {% block content %}
+    <script src="https://js.stripe.com/v3/"></script>
     <div class="container"><!-- Back Button -->
         <div class="back-button">
             <button onclick="goBack()">&#8592; Back</button>
@@ -28,11 +29,35 @@
                 <button class="size">3XL</button>
             </div>
             <button class="add-to-cart" onclick=" location.href='{% url 'add_to_cart' product.slug %}' ">Add to Cart</button>
-            <button class="shop-pay" onclick=" location.href='{% url 'checkout/product' product.slug %}' " >Buy with Shop Pay</button>
+            <button id= 'checkout-button' class="shop-pay" >Buy with Shop Pay</button>
         </div> 
     </div>
 <script> 
-    // Function to navigate to the previous page
+    const stripe = Stripe("{{stripe_pub_key }}"); // Replace with your Stripe publishable key
+    const checkoutButton = document.getElementById("checkout-button");
+
+    checkoutButton.addEventListener("click", function () {
+        fetch("/checkout/createSession/{{product.slug}}", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": "{{ csrf_token }}", // If using Django CSRF
+            },
+        })
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (session) {
+                if (session.error) {
+                    console.error("Error:", session.error);
+                } else {
+                    return stripe.redirectToCheckout({ sessionId: session.id });
+                }
+            })
+            .catch(function (error) {
+                console.error("Error:", error);
+            });
+    });
 function goBack() {
     window.history.back();
 }

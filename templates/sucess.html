@@ -1,55 +1,46 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Thanks for your order!</title>
-<style>
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f9f9f9;
-    color: #333;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
+{% extends "base.html" %}
 
-section {
-    text-align: center;
-    background: #ffffff;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 30px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 500px;
-    width: 100%;
-}
+{% block styles %}
+{% load static %}
+<link rel="stylesheet" href={% static "success.css" %}>
+{% endblock styles %}
+{% block content %}
+<div class="success-container">
+    <div class="success-content">
+        <div class="icon">
+            <img src="{% static 'images/checkmark.gif' %}" alt="Success" />
+        </div>
+        <h1>Thank you for your purchase</h1>
+        <p>We've received your order and it will ship in 5–7 business days.</p>
+        <p>Your order number is <strong>{{ order_number }}</strong>.</p>
 
-section p {
-    font-size: 18px;
-    line-height: 1.6;
-    margin: 0;
-}
-
-section a {
-    color: #007BFF;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-section a:hover {
-    text-decoration: underline;
-}
-
-</style>
-</head>
-<body>
-  <section>
-    <p>
-      We appreciate your business! If you have any questions, please email
-      <a href="mailto:orders@example.com">orders@example.com</a>.
-    </p>
-  </section>
-</body>
-</html>
+        <div class="order-summary">
+            <h3>Order Summary</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <img src="{{ product.img.url }}" alt="{{ item.name }}" class="product-img" />
+                            {{ product.name }}
+                        </td>
+                        <td>₹{{ product.price }}</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Total</th>
+                        <th>₹{{ order_total }}</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <a href="/shop" class="btn">Back to Home</a>
+    </div>
+</div>
+{% endblock %}

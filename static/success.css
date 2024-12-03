@@ -1,0 +1,90 @@
+*{
+    font-family: cursive;
+}
+.success-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    background-color: #f8f9fa;
+    padding: 20px;
+}
+
+.success-content {
+    background: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
+}
+
+.success-content .icon img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px;
+}
+
+.success-content h1 {
+    color: #048b69;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.success-content p {
+    color: #555;
+    margin: 5px 0;
+    line-height: 2;
+}
+
+.order-summary {
+    margin-top: 30px;
+    text-align: left;
+}
+
+.order-summary h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.order-summary table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.order-summary table th,
+.order-summary table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.order-summary table th {
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.product-img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    vertical-align: middle;
+    border-radius: 5px;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    color: #fff;
+    background-color: #048b69;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.btn:hover {
+    background-color: #048b69;
+}

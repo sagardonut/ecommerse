@@ -33,15 +33,17 @@ def aipick(request):
 
 def product_desc(request,slug):
     product = get_object_or_404(products,slug=slug)
+    stripe_pub_key= settings.STRIPE_PUBLICABLEKEY
     cart = request.session.get('cart', {})
     total_price = 0
     for item in cart.values():
         total_price += float(item['bill_amt']) * item['quantity']
-
+    
     return render(request, 'frabic.html' ,
-                  {  "product":product,
+                  { "product":product,
                    "cart":cart, 
-                   'bill_amt':total_price
+                   'bill_amt':total_price,
+                   'stripe_pub_key':stripe_pub_key,
                    })
 
 def add_to_cart(request, slug):
@@ -68,22 +70,26 @@ def CreateCheckoutSession(request, slug):
             line_items=[
                 {
                     # Provide the exact Price ID (for example, pr_1234) of the product you want to sell
-                    'price': '{{ product.price}}',
+                    'price': "price_1QRsgnLcmnchVaXZriiFMYbE",
                     'quantity': 1,
                 },
             ],
             mode='payment',
-            success_url=YOUR_DOMAIN + '/success.html',
-            cancel_url=YOUR_DOMAIN + '/cancel.html',
+            success_url='http://127.0.0.1:8000/success/'+ f'{product.id}',
+            cancel_url='http://127.0.0.1:8000/cancel'
         )
-    return JsonResponse({ 'id':checkout_session.url })
+    return JsonResponse({ 'id':checkout_session.id })
 
 def checkout(request,slug):
     product = products.objects.get(slug=slug)
     return render(request, 'checkout.html', { "product":product})
 
-def sucess(request):
-    return render(request,'sucess.html')
+def shop(request):
+    return redirect("home")
+
+def sucess(request,pk):
+    product= products.objects.get(id=pk)
+    return render(request,'sucess.html',{"product":product})
 
 def cancel(request):
     return render(request,'cancel.html')

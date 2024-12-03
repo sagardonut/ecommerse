@@ -7,7 +7,8 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('',views.home , name="home"),
-    path('sucess',views.sucess , name="sucess"),
+    path('shop',views.shop , name="shop"),
+    path('success/<pk>',views.sucess , name="sucess"),
     path('cancel',views.cancel , name="cancel"),
     path('product/<slug:slug>/',views.product_desc , name="product"),
     path('ai/pickoutfit',views.aipick , name='aipick'),
