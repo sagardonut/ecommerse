@@ -49,10 +49,10 @@ Follow these steps to get the project running on your local machine.
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/yourusername/django-ecommerce-stripe.git
+git clone https://github.com/sagardonut/ecommerce.git
 cd ecommerse
 ```
-### 2. set .env file & Create a stripe account and import the followings keys
+### 2. set .env file next to manage.py file & Create a stripe account and import the followings keys
 ```bash
 STRIPE_PUBLICABLE_KEY =
 STRIPE_SECRET_KEY =
