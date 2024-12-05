@@ -1,4 +1,4 @@
-#### ⚠️Still Under Construction 👷‍♂️
+$${\color{yellow}⚠Still Under Construction👷‍♂️}$$
 # Django E-Commerce with Stripe Checkout
 
 This project is a feature-rich **E-Commerce platform** built with **Django**. It includes a shopping cart system, Stripe payment gateway integration, and dynamic product management. The platform offers a seamless shopping experience with modern payment options like credit/debit cards, CashApp Pay, and more.
