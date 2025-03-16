@@ -4,6 +4,12 @@ $${\color{yellow}⚠Still Under Construction👷‍♂️}$$
 This project is a feature-rich **E-Commerce platform** built with **Django**. It includes a shopping cart system, Stripe payment gateway integration, and dynamic product management. The platform offers a seamless shopping experience with modern payment options like credit/debit cards, CashApp Pay, and more.
 
 ---
+## screenshot
+![image](https://github.com/user-attachments/assets/0f7b5b7f-8d7e-4466-8914-7eff59ac09ba)
+![image](https://github.com/user-attachments/assets/5a1e5f32-8565-4125-b8b4-309bc3f79e4f)
+![image](https://github.com/user-attachments/assets/fe62acac-2706-489d-b2fa-2c385d867b1d)
+![image](https://github.com/user-attachments/assets/4a579a24-6b00-4aaf-b42d-8d037a3d0362)
+![image](https://github.com/user-attachments/assets/22342bfa-7e43-4d13-809e-156553eb2c5e)
 
 ## Features
 
